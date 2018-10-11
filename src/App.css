@@ -1,0 +1,84 @@
+@font-face {
+  font-family: Norse-Bold;
+  src: url('./components/Norse-Bold.otf') format("opentype");
+}
+#addBox {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  width: 300px;
+  height: 180px;
+  border:2px solid darkgray;
+  background: darkgray;
+  margin: 15px;
+}
+#dragonAdd {
+  position: relative;
+  bottom: 100px;
+  float: right;
+  height: 50px;
+  width: 140px;
+  font-size: 20px;
+  margin: 20px;
+}
+.cornerBox {
+  position: flex;
+  margin: 0 5px; 
+}
+.cardback {
+  display: inline-flex;
+  justify-content: space-around;
+  align-content: center;
+  width: 350px;
+  margin-left: 10px;
+}
+.dragonName {
+  font-size: 30px;
+  color: Red;
+  font-family: 'Norse-Bold';
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+#App {
+  background-image: url("./components/images/dragonBg.jpg");
+  background-repeat: repeat;
+}
+h1 {
+  font-size: 60px;
+  text-align: center;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+#dragonTitle {
+  font-Size: 120px;
+  color: red;
+  font-weight: bold;
+  text-shadow: -3px 0 yellow, 0 3px yellow, 3px 0 yellow, 0 -3px yellow;
+}
+#openCard {
+  height: 70vh;
+  width: 50vw;
+  background-image: url("./components/images/cardBg.jpg");
+  background-size: 100vh, 100vw;
+  font-size: 30px;
+  text-align: center;
+}
+#openCard h1 {
+  font-size: 45px;
+}
+#searchInvite {
+  font-size: 30px;
+  color: white;
+}
+h3 {
+  color:white;
+}
+h2 {
+  font-size: 25px;
+}
+.pokemon {
+  align-content: center;
+  font-size: 30px;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.pokemonButton {
+  margin-left: 40px;
+}
