@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const port = 4000;
+const axios = require('axios'); 
 
 const app = express();
 app.use(bodyParser.json());
@@ -53,7 +54,7 @@ app.get("/api/dragonInfo/:index", (req,res) => {
 
 app.post("/api/addDragon/", (req,res) => {
     const {newDragon} = req.body;
-    dragons = {...newDragon};
+    dragons = [...dragons, newDragon];
     res.status(200).send(dragons)
 })
 
@@ -73,30 +74,7 @@ app.delete("/api/buh-bye/:index", (req, res) => {
     res.status(200).send(dragons)
 })
 
-app.get(`api/pokemonName/:id/`, (req, res) => {
-  axios.get(`https://pokeapi.co/api/v2/pokemon/${req.params.num}`)
-  .then(res => {
-    res.status(200).send(res.data.name)
-  })
-})
-
-app.get(`api/pokemonHeight/:id/`, (req, res) => {
-  axios.get(`https://pokeapi.co/api/v2/pokemon/${req.params.num}`)
-  .then(res => {
-    res.status(200).send(res.data)
-  })
-})
-
-app.get(`api/pokemonWeight/:id`, (req, res) => {
-  axios.get(`https://pokeapi.co/api/v2/pokemon/${req.params.num}`)
-  .then(res => {
-    res.status(200).send(res.data)
-  })
-})
-
-app.get(`api/pokemonId/:id`, (req, res) => {
-  axios.get(`https://pokeapi.co/api/v2/pokemon/${req.params.num}`)
-  .then(res => {
-    res.status(200).send(res.data)
-  })
+app.get(`/api/pokemonInfo/:id`, async (req, res) => {
+  const info =  await axios.get(`https://pokeapi.co/api/v2/pokemon/${req.params.id}/`)
+  res.status(200).send(info)
 })

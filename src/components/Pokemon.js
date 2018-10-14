@@ -1,32 +1,53 @@
-import React from 'react'
+import React, { Component } from 'react'
 import axios from 'axios'
 
-export default function Pokemon() {
-    let num = Math.floor(Math.random() * 151 + 1)
-    let height = axios.get(`api/pokemonHeight/${num}/`).then(res => { res.data.height })
-    let weight = axios.get(`api/pokemonWeight/${num}/`).then(res => { res.data.weight })
-    let id = axios.get(`api/pokemonId/${num}/`).then(res => { res.data.id })
-    console.log(num)
-    function getStats(val) {
+export default class Pokemon extends Component {
+    constructor() {
+        super()
+        this.state = {
+            name: '',
+            weight: 0,
+            height: 0,
+            id: 0
+        }
+        this.getPokemon = this.getPokemon.bind(this)
+        this.getStats = this.getStats.bind(this)
+    }
+    getStats() {
         return (
             <div>
-                <p>Height: {height}</p>
-                <p>Weight: {weight}</p>
-                <p>Id: {id}</p>
+                <p>Pet ID: {this.state.id}</p>
+                <p>Pet Weight: {this.state.weight}</p>
+                <p>Pet Height: {this.state.height}</p>
             </div>
         )
     }
-    function getPokemon() {
-        let name = axios.get(`api/pokemonName/${num}/`).then(res => { res.data.name })
+    getPokemon (id) {
+        let pokemon = {}
+        axios.get(`api/pokemonInfo/${id}`).then(res => {
+            pokemon = res.data
+        }) 
+        this.setState({
+            name: pokemon.name,
+            weight: pokemon.weight,
+            height: pokemon.height, 
+            id: id
+        })
         return (
             <div>
-                <h6>{name}</h6>
+                <h6>{this.state.name}</h6>
                 <p>Want to know more about this pet?</p>
-                <button onClick={getStats()}>Click Here</button>
+                <button onClick={this.getStats()}>Click Here!</button>
             </div >
         )
     }
-    return (
-        <button onClick={getPokemon()}>Get New Pet</button>
-    )
+    randomNumber () {
+        let num = Math.floor(Math.random() * 151 + 1)
+        return (num)
+    }
+    render() {
+        return (
+            <button onClick={this.getPokemon(this.randomNumber())}>Get New Pet</button>
+        )
+    }
 }
